@@ -1,4 +1,4 @@
-from fastapi import FastAPI, APIRouter
+from fastapi import FastAPI, APIRouter, HTTPException
 from dotenv import load_dotenv
 from starlette.middleware.cors import CORSMiddleware
 from motor.motor_asyncio import AsyncIOMotorClient
@@ -14,16 +14,34 @@ from datetime import datetime, timezone
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
 
-# MongoDB connection
-mongo_url = os.environ['MONGO_URL']
-client = AsyncIOMotorClient(mongo_url)
-db = client[os.environ['DB_NAME']]
+# MongoDB connection (lazy — avoids import-time crash when env vars are absent during build)
+mongo_url = os.environ.get('MONGO_URL')
+db_name = os.environ.get('DB_NAME', 'autoace')
+client: AsyncIOMotorClient | None = None
+db = None
+
+if mongo_url:
+    client = AsyncIOMotorClient(mongo_url)
+    db = client[db_name]
+else:
+    logging.getLogger(__name__).warning(
+        "MONGO_URL is not set — API routes that need the database will return 503."
+    )
 
 # Create the main app without a prefix
 app = FastAPI()
 
 # Create a router with the /api prefix
 api_router = APIRouter(prefix="/api")
+
+
+def require_db():
+    if db is None:
+        raise HTTPException(
+            status_code=503,
+            detail="Database is not configured. Set MONGO_URL and DB_NAME environment variables.",
+        )
+    return db
 
 
 # Define Models
@@ -60,6 +78,7 @@ async def root():
 
 @api_router.post("/status", response_model=StatusCheck)
 async def create_status_check(input: StatusCheckCreate):
+    database = require_db()
     status_dict = input.model_dump()
     status_obj = StatusCheck(**status_dict)
     
@@ -67,13 +86,14 @@ async def create_status_check(input: StatusCheckCreate):
     doc = status_obj.model_dump()
     doc['timestamp'] = doc['timestamp'].isoformat()
     
-    _ = await db.status_checks.insert_one(doc)
+    _ = await database.status_checks.insert_one(doc)
     return status_obj
 
 @api_router.get("/status", response_model=List[StatusCheck])
 async def get_status_checks():
+    database = require_db()
     # Exclude MongoDB's _id field from the query results
-    status_checks = await db.status_checks.find({}, {"_id": 0}).to_list(1000)
+    status_checks = await database.status_checks.find({}, {"_id": 0}).to_list(1000)
     
     # Convert ISO string timestamps back to datetime objects
     for check in status_checks:
@@ -84,15 +104,17 @@ async def get_status_checks():
 
 @api_router.post("/leads", response_model=Lead, status_code=201)
 async def create_lead(input: LeadCreate):
+    database = require_db()
     lead = Lead(**input.model_dump())
     doc = lead.model_dump()
     doc['created_at'] = doc['created_at'].isoformat()
-    await db.leads.insert_one(doc)
+    await database.leads.insert_one(doc)
     return lead
 
 @api_router.get("/leads", response_model=List[Lead])
 async def get_leads():
-    leads = await db.leads.find({}, {"_id": 0}).to_list(1000)
+    database = require_db()
+    leads = await database.leads.find({}, {"_id": 0}).to_list(1000)
     for lead in leads:
         if isinstance(lead['created_at'], str):
             lead['created_at'] = datetime.fromisoformat(lead['created_at'])
@@ -118,4 +140,5 @@ logger = logging.getLogger(__name__)
 
 @app.on_event("shutdown")
 async def shutdown_db_client():
-    client.close()
+    if client is not None:
+        client.close()

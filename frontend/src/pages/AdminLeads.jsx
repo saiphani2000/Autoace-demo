@@ -2,8 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Spade, Users, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
-
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+import { API_BASE } from "@/lib/api";
 
 export default function AdminLeads() {
   const [leads, setLeads] = useState([]);
@@ -11,7 +10,7 @@ export default function AdminLeads() {
 
   useEffect(() => {
     axios
-      .get(`${API}/leads`)
+      .get(`${API_BASE}/leads`)
       .then((res) => setLeads([...res.data].reverse()))
       .catch(() => setLeads([]))
       .finally(() => setLoading(false));

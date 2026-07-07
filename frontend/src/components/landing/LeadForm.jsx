@@ -2,8 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { toast } from "sonner";
 import { Loader2, ArrowRight } from "lucide-react";
-
-const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
+import { API_BASE } from "@/lib/api";
 const TEXTURE =
   "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTF8MHwxfHNlYXJjaHwzfHxhYnN0cmFjdCUyMGRhcmslMjBncmFwaGl0ZSUyMHRleHR1cmV8ZW58MHx8fHwxNzgzNDY2MTU5fDA&ixlib=rb-4.1.0&q=85";
 
@@ -22,7 +21,7 @@ export const LeadForm = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      await axios.post(`${API}/leads`, form);
+      await axios.post(`${API_BASE}/leads`, form);
       toast.success("Demo requested — we'll be in touch within 24 hours.");
       setForm(EMPTY);
     } catch {
