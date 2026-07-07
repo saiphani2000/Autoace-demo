@@ -1,9 +1,10 @@
 const ITEMS = [
-  "Backed by Y Combinator",
-  "MIT Engineered",
-  "DMS Native Integration",
-  "24/7 AI Voice Agents",
-  "Built for Car Dealerships",
+  "Backed by Y Combinator (F25)",
+  "Founded at MIT",
+  "SOC 2 Type II in Progress",
+  "24/7 Coverage",
+  "20+ Languages",
+  "DMS / CRM Native",
 ];
 
 export const TrustBar = () => (

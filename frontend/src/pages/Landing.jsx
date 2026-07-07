@@ -1,10 +1,13 @@
 import { Navbar } from "@/components/landing/Navbar";
 import { Hero } from "@/components/landing/Hero";
 import { TrustBar } from "@/components/landing/TrustBar";
+import { ProblemSection } from "@/components/landing/ProblemSection";
 import { Features } from "@/components/landing/Features";
-import { ROISection } from "@/components/landing/ROISection";
-import { HybridSection } from "@/components/landing/HybridSection";
-import { FounderSection } from "@/components/landing/FounderSection";
+import { IntegrationsSection } from "@/components/landing/IntegrationsSection";
+import { MetricsSection } from "@/components/landing/MetricsSection";
+import { SecuritySection } from "@/components/landing/SecuritySection";
+import { AboutSection } from "@/components/landing/AboutSection";
+import { CareersSection } from "@/components/landing/CareersSection";
 import { LeadForm } from "@/components/landing/LeadForm";
 import { Footer } from "@/components/landing/Footer";
 
@@ -14,10 +17,13 @@ export default function Landing() {
       <Navbar />
       <Hero />
       <TrustBar />
+      <ProblemSection />
       <Features />
-      <ROISection />
-      <HybridSection />
-      <FounderSection />
+      <IntegrationsSection />
+      <MetricsSection />
+      <SecuritySection />
+      <AboutSection />
+      <CareersSection />
       <LeadForm />
       <Footer />
     </main>

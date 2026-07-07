@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { AudioWaveform, Users, ArrowLeft } from "lucide-react";
+import { Spade, Users, ArrowLeft } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
@@ -23,7 +23,7 @@ export default function AdminLeads() {
         <div className="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
           <div className="flex items-center gap-2.5">
             <span className="w-8 h-8 rounded-lg bg-white text-black flex items-center justify-center">
-              <AudioWaveform size={18} strokeWidth={1.5} />
+              <Spade size={18} strokeWidth={1.5} />
             </span>
             <span className="font-heading font-bold text-lg tracking-tight">AutoAce Admin</span>
           </div>

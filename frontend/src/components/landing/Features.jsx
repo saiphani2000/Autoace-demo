@@ -1,80 +1,84 @@
-import { PhoneIncoming, Clock, Database, CalendarCheck, BellRing } from "lucide-react";
+import { PhoneIncoming, PhoneOutgoing, Languages, CalendarCheck, Headset, Zap, BellRing, RefreshCw, Star } from "lucide-react";
 
 const SHOWROOM =
   "https://images.unsplash.com/photo-1763165561886-a9391b2132c1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1Mjh8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBjYXIlMjBkYXJrJTIwc2hvd3Jvb218ZW58MHx8fHwxNzgzNDY2MTU5fDA&ixlib=rb-4.1.0&q=85";
 
-const card =
-  "bg-[#0D1322] border border-white/10 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.2)] hover:-translate-y-1 hover:border-white/30 transition-[transform,border-color] duration-300";
-
-const SMALL_CARDS = [
-  {
-    icon: Clock,
-    title: "24/7 Availability",
-    desc: "Nights, weekends, holidays. Your dealership never sends a customer to voicemail again.",
-    testId: "feature-availability",
-  },
-  {
-    icon: Database,
-    title: "DMS Native Integration",
-    desc: "Plugs directly into your dealer management system — appointments, records, and history sync in real time.",
-    testId: "feature-dms",
-  },
-  {
-    icon: CalendarCheck,
-    title: "Appointment Scheduling",
-    desc: "Books, confirms, and reschedules service and sales appointments without human touch.",
-    testId: "feature-scheduling",
-  },
-  {
-    icon: BellRing,
-    title: "Reminders & Follow-ups",
-    desc: "Automated service reminders, recall notices, and post-visit follow-ups that actually get answered.",
-    testId: "feature-reminders",
-  },
+const INBOUND = [
+  { icon: Languages, title: "Natural Interactions", desc: "Human-like voices in 20+ languages." },
+  { icon: CalendarCheck, title: "Real-Time Booking", desc: "Instantly schedules service appointments based on live technician availability." },
+  { icon: Headset, title: "Seamless Handoff", desc: "Automatically routes complex queries or upset customers to your live team with full context." },
+  { icon: Zap, title: "Performance", desc: "<1 second pickup time and 100% answer rate." },
 ];
 
-export const Features = () => (
-  <section id="platform" data-testid="features-section" className="max-w-7xl mx-auto px-6 lg:px-8 py-24">
-    <p className="text-xs tracking-[0.2em] uppercase text-slate-400">The Platform</p>
-    <h2 className="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl tracking-tight mt-4 max-w-2xl">
-      One AI voice layer for your entire dealership.
-    </h2>
+const OUTBOUND = [
+  { icon: BellRing, title: "Automated Reminders", desc: "AI-driven service reminders and appointment confirmations." },
+  { icon: RefreshCw, title: "Revenue Recovery", desc: "Follows up on declined services and recall notices to fill your shop's calendar." },
+  { icon: Star, title: "Customer Satisfaction", desc: "Conducts CSI surveys automatically after service visits." },
+];
 
-    <div className="grid grid-cols-1 md:grid-cols-12 gap-6 mt-14">
-      <div data-testid="feature-voice-agents" className={`${card} md:col-span-8 relative overflow-hidden min-h-[340px] flex items-end`}>
-        <img src={SHOWROOM} alt="Luxury dealership showroom" className="absolute inset-0 w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#060A14] via-[#060A14]/60 to-transparent" />
-        <div className="relative p-8 lg:p-10">
-          <span className="w-11 h-11 rounded-xl bg-white/10 border border-white/20 flex items-center justify-center mb-5 backdrop-blur-sm">
-            <PhoneIncoming size={20} strokeWidth={1.5} />
-          </span>
-          <h3 className="font-heading font-bold text-xl sm:text-2xl">Inbound & Outbound Voice Agents</h3>
-          <p className="text-base leading-relaxed text-slate-300 mt-3 max-w-lg">
-            Natural-sounding AI agents answer every inbound call and run outbound campaigns —
-            qualifying leads, handling service requests, and routing hot buyers to your team instantly.
-          </p>
-        </div>
-      </div>
-
-      <div className={`${card} md:col-span-4 p-8 lg:p-10 flex flex-col justify-between`} data-testid={SMALL_CARDS[0].testId}>
-        <span className="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
-          <Clock size={20} strokeWidth={1.5} />
+const FeatureList = ({ items, testPrefix }) => (
+  <div className="space-y-6 mt-8">
+    {items.map(({ icon: Icon, title, desc }, i) => (
+      <div key={title} data-testid={`${testPrefix}-${i}`} className="flex items-start gap-4">
+        <span className="w-10 h-10 shrink-0 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
+          <Icon size={18} strokeWidth={1.5} />
         </span>
-        <div className="mt-10">
-          <h3 className="font-heading font-bold text-xl">{SMALL_CARDS[0].title}</h3>
-          <p className="text-sm leading-relaxed text-slate-400 mt-3">{SMALL_CARDS[0].desc}</p>
+        <div>
+          <h4 className="font-heading font-bold text-base">{title}</h4>
+          <p className="text-sm leading-relaxed text-slate-400 mt-1">{desc}</p>
         </div>
       </div>
+    ))}
+  </div>
+);
 
-      {SMALL_CARDS.slice(1).map(({ icon: Icon, title, desc, testId }) => (
-        <div key={title} data-testid={testId} className={`${card} md:col-span-4 p-8 lg:p-10`}>
-          <span className="w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center">
-            <Icon size={20} strokeWidth={1.5} />
-          </span>
-          <h3 className="font-heading font-bold text-xl mt-8">{title}</h3>
-          <p className="text-sm leading-relaxed text-slate-400 mt-3">{desc}</p>
+export const Features = () => (
+  <section id="platform" data-testid="features-section" className="bg-[#0D1322] border-y border-white/10">
+    <div className="max-w-7xl mx-auto px-6 lg:px-8 py-24">
+      <p className="text-xs tracking-[0.2em] uppercase text-slate-400">Core Features</p>
+      <h2 className="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl tracking-tight mt-4 max-w-2xl">
+        One AI voice layer for your entire dealership.
+      </h2>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-14">
+        <div
+          data-testid="features-inbound-card"
+          className="bg-[#060A14] border border-white/10 rounded-2xl p-8 lg:p-10 shadow-[0_8px_32px_rgba(0,0,0,0.2)]"
+        >
+          <div className="flex items-center gap-3">
+            <span className="w-11 h-11 rounded-xl bg-white text-black flex items-center justify-center">
+              <PhoneIncoming size={20} strokeWidth={1.5} />
+            </span>
+            <div>
+              <p className="text-xs tracking-[0.2em] uppercase text-slate-400">Inbound Calling</p>
+              <h3 className="font-heading font-bold text-xl sm:text-2xl mt-0.5">Never Miss a Lead</h3>
+            </div>
+          </div>
+          <FeatureList items={INBOUND} testPrefix="inbound-feature" />
         </div>
-      ))}
+
+        <div
+          data-testid="features-outbound-card"
+          className="bg-[#060A14] border border-white/10 rounded-2xl overflow-hidden shadow-[0_8px_32px_rgba(0,0,0,0.2)] flex flex-col"
+        >
+          <div className="p-8 lg:p-10">
+            <div className="flex items-center gap-3">
+              <span className="w-11 h-11 rounded-xl bg-white/5 border border-white/20 flex items-center justify-center">
+                <PhoneOutgoing size={20} strokeWidth={1.5} />
+              </span>
+              <div>
+                <p className="text-xs tracking-[0.2em] uppercase text-slate-400">Outbound Calling</p>
+                <h3 className="font-heading font-bold text-xl sm:text-2xl mt-0.5">Proactive Outreach</h3>
+              </div>
+            </div>
+            <FeatureList items={OUTBOUND} testPrefix="outbound-feature" />
+          </div>
+          <div className="relative flex-1 min-h-[140px] mt-auto">
+            <img src={SHOWROOM} alt="Luxury dealership showroom" className="absolute inset-0 w-full h-full object-cover" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#060A14] to-[#060A14]/30" />
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 );

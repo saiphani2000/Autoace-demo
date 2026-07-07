@@ -1,4 +1,4 @@
-import { AudioWaveform } from "lucide-react";
+import { Spade } from "lucide-react";
 
 export const Navbar = () => (
   <header
@@ -8,21 +8,22 @@ export const Navbar = () => (
     <div className="max-w-7xl mx-auto px-6 lg:px-8 h-16 flex items-center justify-between">
       <a href="#top" data-testid="navbar-logo" className="flex items-center gap-2.5">
         <span className="w-8 h-8 rounded-lg bg-white text-black flex items-center justify-center">
-          <AudioWaveform size={18} strokeWidth={1.5} />
+          <Spade size={18} strokeWidth={1.5} />
         </span>
         <span className="font-heading font-bold text-lg tracking-tight">AutoAce</span>
       </a>
       <nav className="hidden md:flex items-center gap-8 text-sm text-slate-300">
         <a data-testid="nav-platform-link" href="#platform" className="hover:text-white transition-colors">Platform</a>
-        <a data-testid="nav-roi-link" href="#roi" className="hover:text-white transition-colors">ROI</a>
-        <a data-testid="nav-team-link" href="#team" className="hover:text-white transition-colors">Team</a>
+        <a data-testid="nav-integrations-link" href="#integrations" className="hover:text-white transition-colors">Integrations</a>
+        <a data-testid="nav-results-link" href="#results" className="hover:text-white transition-colors">Results</a>
+        <a data-testid="nav-about-link" href="#about" className="hover:text-white transition-colors">About</a>
       </nav>
       <a
         data-testid="navbar-demo-button"
         href="#demo"
         className="bg-white text-black text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-slate-200 active:scale-95 transition-[background-color,transform]"
       >
-        Request Demo
+        Get Started Today
       </a>
     </div>
   </header>

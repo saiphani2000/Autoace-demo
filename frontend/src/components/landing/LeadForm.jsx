@@ -39,13 +39,14 @@ export const LeadForm = () => {
 
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8 grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
         <div className="md:col-span-5">
-          <p className="text-xs tracking-[0.2em] uppercase text-slate-400">Request a Demo</p>
+          <p className="text-xs tracking-[0.2em] uppercase text-slate-400">Get in Touch</p>
           <h2 className="font-heading font-bold text-2xl sm:text-3xl lg:text-4xl tracking-tight mt-4">
             Hear your AI agent take its first call.
           </h2>
           <p className="text-base leading-relaxed text-slate-300 mt-6">
             Tell us about your dealership and we'll set up a live demo tailored to your
-            DMS — usually within one business day.
+            DMS — usually within one business day. Prefer email? Write to{" "}
+            <a href="mailto:bbunch@autoace.ai" className="text-white hover:underline">bbunch@autoace.ai</a>.
           </p>
         </div>
 
