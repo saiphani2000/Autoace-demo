@@ -5,7 +5,7 @@ from motor.motor_asyncio import AsyncIOMotorClient
 import os
 import logging
 from pathlib import Path
-from pydantic import BaseModel, Field, ConfigDict
+from pydantic import BaseModel, Field, ConfigDict, EmailStr
 from typing import List
 import uuid
 from datetime import datetime, timezone
@@ -43,14 +43,14 @@ class Lead(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     name: str
     dealership: str
-    email: str
+    email: EmailStr
     phone: str
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 class LeadCreate(BaseModel):
     name: str
     dealership: str
-    email: str
+    email: EmailStr
     phone: str
 
 # Add your routes to the router instead of directly to app
@@ -82,7 +82,7 @@ async def get_status_checks():
     
     return status_checks
 
-@api_router.post("/leads", response_model=Lead)
+@api_router.post("/leads", response_model=Lead, status_code=201)
 async def create_lead(input: LeadCreate):
     lead = Lead(**input.model_dump())
     doc = lead.model_dump()

@@ -19,7 +19,7 @@ Build a landing page for AutoAce, a specialized AI platform managing inbound and
 - Lead: { id (uuid), name, dealership, email, phone, created_at (ISO) }
 
 ## API Endpoints
-- POST /api/leads — create lead (demo request)
+- POST /api/leads — create lead (demo request), returns 201, rejects invalid emails (422 via EmailStr)
 - GET /api/leads — list leads
 
 ## Frontend Structure
@@ -33,12 +33,13 @@ Build a landing page for AutoAce, a specialized AI platform managing inbound and
 - [x] Smooth-scroll anchor nav, staggered fade-in animations, marquee, hover lifts
 - [x] data-testid on all interactive/critical elements
 - [x] E2E tested: iteration_1.json — 100% pass (backend 6/6, all frontend flows)
+- [x] EmailStr validation + 201 status on POST /api/leads (curl-verified: 201 valid, 422 invalid email)
+- [x] Admin leads view at /admin (`/app/frontend/src/pages/AdminLeads.jsx`) — dark-luxury table, newest first, screenshot-verified
 
 ## Backlog (not requested, potential P1/P2)
 - P1: Email notification to sales team on new lead (needs email integration e.g. Resend)
-- P1: Explicit 201 status + EmailStr validation on POST /api/leads
 - P2: Rate limiting / spam protection on public lead endpoint
-- P2: Simple admin view to browse captured leads
+- P2: Auth protection for /admin view
 - P2: SEO meta tags / OpenGraph for sharing
 
 ## Test Artifacts
