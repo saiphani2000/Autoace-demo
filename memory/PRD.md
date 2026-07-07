@@ -11,7 +11,7 @@ Build a landing page for AutoAce, a specialized AI platform managing inbound and
 - Integrations: CDK Global, Reynolds & Reynolds, Tekion, Dealertrack, XTime, myKaarma, Affinitiv; writes appointments + RO pre-builds back to schedulers
 - Metrics: 98% call accuracy, 30% increase in appointments, 94% CSAT, 24/7 always-on
 - Security: SOC 2 Type II audit in progress; data-protection controls built in
-- About: founded 2025, Cambridge MA, by MIT students Michael Wong & Bradley Bunch; vision = operational integration layer for automotive retail
+- About: founded 2025, Cambridge MA, by MIT engineer Bradley Bunch (sole founder — Michael Wong removed per user request, June 2026)
 - Contact: bbunch@autoace.ai; Careers: Boston-based engineering, voice AI + LLMs
 - Footer: © 2026 AutoAce AI; links Login, Contact, LinkedIn
 - Logo: Spade icon
@@ -36,7 +36,7 @@ Build a landing page for AutoAce, a specialized AI platform managing inbound and
 - GET /api/leads — list leads
 
 ## Frontend Structure
-- `/app/frontend/src/pages/Landing.jsx` — composition: Navbar, Hero (with live-call dashboard mocks), TrustBar, ProblemSection, Features (inbound/outbound), IntegrationsSection, MetricsSection, SecuritySection, AboutSection (founders MW/BB initials avatars), CareersSection, LeadForm, Footer
+- `/app/frontend/src/pages/Landing.jsx` — composition: Navbar, Hero (with live-call dashboard mocks), TrustBar, ProblemSection, Features (inbound/outbound), IntegrationsSection, MetricsSection, SecuritySection, AboutSection (single founder card: Bradley Bunch), CareersSection, LeadForm, Footer
 - `/app/frontend/src/pages/AdminLeads.jsx` — /admin leads table (linked from footer "Login")
 
 ## Implemented
@@ -54,10 +54,15 @@ Build a landing page for AutoAce, a specialized AI platform managing inbound and
 
 ## Notes
 - Hero dashboard panels are static marketing mocks by design
-- Founder cards use initials avatars intentionally (no fake stock portraits)
+- Founder card uses initials avatar intentionally (no fake stock portrait)
 
 ## Test Artifacts
 - `/app/backend/tests/test_leads_api.py` (regression suite)
+- `/app/test_reports/iteration_1.json`, `/app/test_reports/iteration_2.json`
+
+## Credentials
+- None (public site, no auth)
+ession suite)
 - `/app/test_reports/iteration_1.json`, `/app/test_reports/iteration_2.json`
 
 ## Credentials
