@@ -15,7 +15,7 @@ export const Footer = () => (
         <a data-testid="footer-contact-link" href="mailto:bbunch@autoace.ai" className="hover:text-white transition-colors">Contact</a>
         <a
           data-testid="footer-linkedin-link"
-          href="https://www.linkedin.com/company/autoace"
+          href="https://www.linkedin.com/company/autoace-ai/"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex items-center gap-1.5 hover:text-white transition-colors"
