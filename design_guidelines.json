@@ -1,0 +1,95 @@
+{
+  "theme": "dark",
+  "archetype": "5 (Luxury)",
+  "design_direction": "Premium automotive (deep navy/graphite, refined, luxury feel)",
+  "typography": {
+    "heading_font": "Cabinet Grotesk",
+    "body_font": "Manrope",
+    "weights": {
+      "heading": "font-light to font-black",
+      "body": "font-normal to font-medium"
+    },
+    "hierarchy": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl tracking-tighter leading-none",
+      "h2": "text-2xl sm:text-3xl lg:text-4xl tracking-tight",
+      "h3": "text-xl sm:text-2xl",
+      "body": "text-base leading-relaxed text-slate-300",
+      "labels": "text-xs tracking-[0.2em] uppercase text-slate-400"
+    }
+  },
+  "colors": {
+    "background_base": "#060A14", 
+    "background_surface": "#0D1322",
+    "text_primary": "#FFFFFF",
+    "text_secondary": "#94A3B8",
+    "accent_primary": "#FFFFFF",
+    "border_subtle": "rgba(255,255,255,0.1)",
+    "glass_bg": "rgba(13, 19, 34, 0.6)",
+    "glow_color": "rgba(255, 255, 255, 0.05)"
+  },
+  "spacing_and_layout": {
+    "padding_scale": "Generous (p-8, p-12, p-16, py-24)",
+    "bento_grid": "grid-cols-1 md:grid-cols-12 gap-6. Use col-span-8 and col-span-4 to create asymmetry.",
+    "container": "max-w-7xl mx-auto px-6 lg:px-8",
+    "card_padding": "p-8 or p-10 to prevent text collision"
+  },
+  "surface_strategies": {
+    "header": "Crystal Glass - backdrop-blur-xl bg-[#060A14]/60 border-b border-white/10",
+    "cards": "Refracted Glass UI / Neumorphism - bg-[#0D1322] border border-white/10 rounded-2xl shadow-[0_8px_32px_rgba(0,0,0,0.2)]",
+    "buttons": "Primary: bg-white text-black hover:bg-slate-200. Secondary: border border-white/20 hover:bg-white/5",
+    "forms": "Shadcn components customized with dark backgrounds, white/10 borders, and focus:ring-white/30."
+  },
+  "motion_and_interactions": {
+    "hover_states": "Cards lift (-translate-y-1) with intensified border glow (border-white/30).",
+    "page_load": "Staggered fade-in using framer-motion. Smooth momentum scrolling.",
+    "buttons": "Subtle scale-down on active (scale-95).",
+    "marquees": "Slow organic drift for Trust Badges."
+  },
+  "components": {
+    "hero": "Dark cinematic feel. Background uses abstract AI lines with a heavy bg-black/60 overlay. Headline: AutoAce. CTA: Request Demo.",
+    "features_bento": "Asymmetrical layout highlighting: Inbound/Outbound calls, 24/7 Availability, DMS Integration.",
+    "roi_section": "Control room grid layout comparing AI missed leads capture vs human-led negotiations.",
+    "trust_section": "Co-founder Bradley Bunch (MIT Engineer) section with portrait. Mentions Y Combinator.",
+    "lead_capture_form": "Floating glass card with inputs: Name, Dealership Name, Email, Phone."
+  },
+  "media": {
+    "images": {
+      "hero_background": {
+        "url": "https://images.unsplash.com/photo-1586962016581-2a84a18fe5e1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NjZ8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGFydGlmaWNpYWwlMjBpbnRlbGxpZ2VuY2UlMjBsaW5lcyUyMGRhcmt8ZW58MHx8fHwxNzgzNDY2MTczfDA&ixlib=rb-4.1.0&q=85",
+        "description": "Abstract dark AI lines for the hero section background. Apply a bg-black/60 overlay to ensure text contrast."
+      },
+      "dealership_showroom": {
+        "url": "https://images.unsplash.com/photo-1763165561886-a9391b2132c1?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1Mjh8MHwxfHNlYXJjaHwxfHxsdXh1cnklMjBjYXIlMjBkYXJrJTIwc2hvd3Jvb218ZW58MHx8fHwxNzgzNDY2MTU5fDA&ixlib=rb-4.1.0&q=85",
+        "description": "Dark luxury car showroom, used in Features or Hybrid Model section."
+      },
+      "texture_background": {
+        "url": "https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTF8MHwxfHNlYXJjaHwzfHxhYnN0cmFjdCUyMGRhcmslMjBncmFwaGl0ZSUyMHRleHR1cmV8ZW58MHx8fHwxNzgzNDY2MTU5fDA&ixlib=rb-4.1.0&q=85",
+        "description": "Dark graphite texture, used as a background pattern for the Form section."
+      },
+      "founder_portrait": {
+        "url": "https://images.pexels.com/photos/28446973/pexels-photo-28446973.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940",
+        "description": "Professional portrait for Bradley Bunch (MIT Engineer) in the About section."
+      }
+    },
+    "logos": {
+      "y_combinator": {
+        "text_fallback": "Y Combinator Backed",
+        "instruction": "Use text-based badge or standard SVG to maintain premium look."
+      },
+      "mit": {
+        "text_fallback": "MIT Engineered",
+        "instruction": "Use text badge."
+      }
+    }
+  },
+  "icons_library": "lucide-react",
+  "instructions_to_main_agent": [
+    "Strictly follow the Dark Theme + Archetype 5 (Luxury) palette. No pure blacks, use deep navy/graphite (#060A14 and #0D1322).",
+    "Use 'Cabinet Grotesk' for headings and 'Manrope' for body text. Add to index.html from an external source if needed.",
+    "ALL interactive elements (buttons, inputs) MUST have data-testid attributes.",
+    "Build the bento grids using raw HTML/Tailwind for asymmetry. Use Shadcn ONLY for form interactions.",
+    "Implement Lucide React icons with thin stroke widths (1.5).",
+    "Overlay all background images with dark gradients (e.g., bg-black/60) to ensure high text contrast.",
+    "Use framer-motion sparingly for elegant staggered reveals."
+  ]
+}
